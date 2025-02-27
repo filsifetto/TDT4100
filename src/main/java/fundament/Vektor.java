@@ -14,7 +14,7 @@ public class Vektor extends Matrix {
             row.add(Double.valueOf(tall));
             add(row);
         }
-        // scanner.close();
+        scanner.close();
     }
 
     public double getNumberAt(int rowNumber) {

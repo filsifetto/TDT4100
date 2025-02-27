@@ -69,7 +69,7 @@ public class EquationSolver {
         System.out.println("Likningen har ingen løsninger");
     }
 
-    private ArrayList<Vektor> freeVectors(Matrix redusert, Vektor vektor, int frieVariabler) {
+    private ArrayList<Vektor> freeVectors(Matrix redusert, Vektor vektor, int frieVariabler) {              
         ArrayList<Vektor> frieVektorer = new ArrayList<>();
         for (int i = dimColSpace(redusert); i < dimColSpace(redusert) + frieVariabler; i++) {
             Vektor fri = new Vektor();
@@ -128,10 +128,9 @@ public class EquationSolver {
         if (numberOfSolutions == 1) {
             printOneSolution(vektor);
         }
-        // if ()
     }
 
     public static void main(String[] args) {
-        new EquationSolver().solve(new Matrix(4, 4), new Vektor(4));
+        new EquationSolver().solve(new Matrix(2, 2), new Vektor(2));
     }
 }

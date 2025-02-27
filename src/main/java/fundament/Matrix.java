@@ -34,7 +34,7 @@ public class Matrix extends ArrayList<Row> { // Extends ArrayList<Row> // Vurder
     }
 
     @Override
-    public String toString() { // Matrix
+    public String toString() {
         String ut = "";
         for (Row rad : this) {
             ut += rad + "\n";
@@ -43,6 +43,7 @@ public class Matrix extends ArrayList<Row> { // Extends ArrayList<Row> // Vurder
     }
 
     public Matrix(int rader, int kolonner) {
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < rader; i++) {
             Row row = new Row();
@@ -54,7 +55,6 @@ public class Matrix extends ArrayList<Row> { // Extends ArrayList<Row> // Vurder
             }
             add(row);
         }
-        // scanner.close();
     }
 
     public Matrix() {

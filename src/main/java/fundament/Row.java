@@ -1,7 +1,6 @@
 package fundament;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Row extends ArrayList<Double> {
 
