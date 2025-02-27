@@ -1,0 +1,133 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "InverseMatrixCalculator",
+            "request": "launch",
+            "mainClass": "TDT4100_project/kalkulasjoner.InverseMatrixCalculator",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Clean",
+            "request": "launch",
+            "mainClass": "TDT4100_project/fundament.Clean",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "ChatOppgave",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.ChatOppgave",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Collectortest",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.Collectortest",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Stream",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.Stream",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Family",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.Family",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "CompareByPivot",
+            "request": "launch",
+            "mainClass": "TDT4100_project/fundament.CompareByPivot",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Matrix",
+            "request": "launch",
+            "mainClass": "TDT4100_project/fundament.Matrix",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "EquationSolver",
+            "request": "launch",
+            "mainClass": "TDT4100_project/kalkulasjoner.EquationSolver",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Vektor",
+            "request": "launch",
+            "mainClass": "TDT4100_project/fundament.Vektor",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.Main",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "ExampleProjectApp",
+            "request": "launch",
+            "mainClass": "TDT4100_project/exampleproject.ExampleProjectApp",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "InverseCalculator",
+            "request": "launch",
+            "mainClass": "TDT4100_project/gausseliminasjon.InverseCalculator",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "RadOperasjoner",
+            "request": "launch",
+            "mainClass": "TDT4100_project/gausseliminasjon.RadOperasjoner",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "EquationSolver",
+            "request": "launch",
+            "mainClass": "TDT4100_project/linearAlgebraProject.EquationSolver",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Matrix",
+            "request": "launch",
+            "mainClass": "TDT4100_project/linearAlgebraProject.Matrix",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "MatrixOperator",
+            "request": "launch",
+            "mainClass": "TDT4100_project/operators.MatrixOperator",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        }
+    ]
+}
