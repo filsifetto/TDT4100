@@ -1,6 +1,5 @@
 package kalkulasjoner;
 
-import fundament.Clean;
 import fundament.Matrix;
 import gausseliminasjon.Gausser;
 import operators.MatrixOperator;
@@ -16,11 +15,5 @@ public class InverseMatrixCalculator {
             new MatrixOperator().multiply(inverse, m);
         }
         return inverse;
-    }
-
-    public static void main(String[] args) {
-        Matrix inverse = new InverseMatrixCalculator().getInverse(new Matrix(3, 3));
-        new Clean().clean(inverse);
-        System.out.println(inverse);
     }
 }
