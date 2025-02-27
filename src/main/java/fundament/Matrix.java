@@ -3,7 +3,7 @@ package fundament;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Matrix extends ArrayList<Row> { // Extends ArrayList<Row> // Vurder å endre til LinkedList<Row>
+public class Matrix extends ArrayList<Row> { //Vurder å endre til LinkedList<Row>
 
     public void setRow(int rowNumber, Row row) {
         set(rowNumber, row);

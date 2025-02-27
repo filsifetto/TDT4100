@@ -11,10 +11,7 @@ public class Gausser {
     private TrappeformPredicate trappeform = new TrappeformPredicate();
     private RadOperasjoner gauss = new RadOperasjoner();
     
-    private ArrayList<Integer> identifyElimination() {               //MatrixOperator
-        // if (!trappeform.test(matrix)) {                                  //Skal gi ut en liste som fungerer som en tuppel, med radtil og rad fra for elimination matrix
-        //     throw new IllegalArgumentException();
-        // }
+    private ArrayList<Integer> identifyElimination() {
         ArrayList<Integer> eliminationRows = new ArrayList<>();
         for (int i = 1; i < matrix.size(); i++) {
             if (matrix.get(i).getPivotIndex() == matrix.get(i - 1).getPivotIndex()) {
@@ -28,7 +25,7 @@ public class Gausser {
 
     public void gaussNed() {
         while (!trappeform.test(matrix)) {
-            gauss.sortByPivot(radOperasjonListe, matrix);                           //Her må det justeres litt
+            gauss.sortByPivot(radOperasjonListe, matrix);
             gauss.scaleByPivot(radOperasjonListe, matrix);
             if (trappeform.test(matrix)) {
                 break;

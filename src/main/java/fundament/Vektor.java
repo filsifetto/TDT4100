@@ -23,9 +23,4 @@ public class Vektor extends Matrix {
 
     public Vektor() {
     }
-
-    public static void main(String[] args) {
-        Vektor vektor = new Vektor(2);
-        System.out.println(vektor);
-    }
 }

@@ -16,7 +16,7 @@ public class EquationSolver {
     }
 
     private ArrayList<Integer> getZeroRowsIndex(Matrix matrix) {              //Gaussklasse / Equationsolver?
-        ArrayList<Integer> zero = new ArrayList<>();         //Gir ut hvilke rader som er nullrader
+        ArrayList<Integer> zero = new ArrayList<>();         //Gir ut hvilke rader som er nullraders
         for (int i = 0; i < matrix.size(); i++) {
             if (matrix.get(i).isZero()) {
                 zero.add(i);
