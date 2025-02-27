@@ -32,7 +32,7 @@ public class Gausser {
             gauss.scaleByPivot(radOperasjonListe, matrix);
             if (trappeform.test(matrix)) {
                 break;
-            }
+            }jefijwij
             ArrayList<Integer> elimRows = identifyElimination();
             gauss.rowReduction(radOperasjonListe, matrix, elimRows.get(0), elimRows.get(1), 1);
             gauss.scaleByPivot(radOperasjonListe, matrix);
