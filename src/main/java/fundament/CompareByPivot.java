@@ -6,21 +6,6 @@ public class CompareByPivot implements Comparator<Row> {
     @Override
     public int compare(Row arg0, Row arg1) {
         return arg0.getPivotIndex() == arg1.getPivotIndex() ? 0 : (arg0.getPivotIndex() == 10000 ? 1 : (arg0.getPivotIndex() < arg1.getPivotIndex() ? -1 : 1));
-        // if (arg0.getPivotIndex() == arg1.getPivotIndex()) {
-        //     return 0;
-        // }
-        // if (arg0.getPivotIndex() == 100000) {
-        //     return 1;
-        // }
-        // if (arg1.getPivotIndex() == 100000) {
-        //     return -1;
-        // }
-        // if (arg0.getPivotIndex() < arg1.getPivotIndex()) {
-        //     return -1;
-        // }
-        // else {
-        //     return 1;
-        // }
     }    
 
     public static void main(String[] args) {
