@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "VektorRom",
+            "request": "launch",
+            "mainClass": "TDT4100_project/fundament.VektorRom",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
             "name": "InverseMatrixCalculator",
             "request": "launch",
             "mainClass": "TDT4100_project/kalkulasjoner.InverseMatrixCalculator",

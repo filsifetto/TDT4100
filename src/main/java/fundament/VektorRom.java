@@ -1,17 +1,29 @@
 package fundament;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+
+import kalkulasjoner.EquationSolver;
+import operators.ToolMatrix;
 
 public class VektorRom {
-    private Set<Vektor> basis = new HashSet<>();
+    private ArrayList<Vektor> basis = new ArrayList<>();
 
     public boolean contains(Vektor vektor) {
-        
+        ArrayList<Vektor> vektorMengde = new ArrayList<>();
+        basis.forEach(t -> vektorMengde.add(t));
+        vektorMengde.add(vektor);
+        Matrix A = new Matrix(vektorMengde);
+        if (new EquationSolver().dimSolution(A, new ToolMatrix().nullVektor(vektor.size())) > 0) {
+            return true;
+        }
+        return false;
     }
 
+    public void setBasis(ArrayList<Vektor> basis) {
+        this.basis = basis;
+    }
 
-    VektorRom(Vektor... vektorer) {
+    public VektorRom(Vektor... vektorer) {
         
     }
 }

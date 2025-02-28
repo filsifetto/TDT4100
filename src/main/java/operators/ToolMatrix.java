@@ -1,7 +1,10 @@
 package operators;
 
+import java.util.stream.IntStream;
+
 import fundament.Matrix;
 import fundament.Row;
+import fundament.Vektor;
 
 public class ToolMatrix {
     private MatrixOperator operator = new MatrixOperator();
@@ -82,5 +85,16 @@ public class ToolMatrix {
             }
         }
         return iD;
+    }
+
+    public Vektor nullVektor(int dim) {
+        Vektor nullVektor = new Vektor();
+        IntStream.range(0, dim)
+                .forEach(i -> {
+                    Row row = new Row();
+                    row.add(0.0);
+                    nullVektor.add(row);
+                });
+        return nullVektor;
     }
 }

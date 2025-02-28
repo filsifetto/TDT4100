@@ -5,6 +5,7 @@ import fundament.Matrix;
 import fundament.Row;
 import fundament.Vektor;
 import operators.MatrixOperator;
+import validators.RedusertTrappeformPredicate;
 
 public class EquationSolver {
     private MatrixOperator operator = new MatrixOperator();
@@ -25,22 +26,23 @@ public class EquationSolver {
     }
 
     private int dimColSpace(Matrix matrix) {
+        if (!new RedusertTrappeformPredicate().test(matrix)) {
+            throw new IllegalArgumentException();
+        }
         return matrix.size() - getZeroRowsIndex(matrix).size();
     }
 
-    private int determineSolutions(Matrix matrix, Vektor vektor) {
+    public int dimSolution(Matrix matrix, Vektor vektor) {
         Matrix inverse = new InverseMatrixCalculator().getInverse(matrix);
         operator.multiply(vektor, inverse);
         operator.multiply(matrix, inverse);
         operator.clean(matrix);
         operator.clean(vektor);
         ArrayList<Integer> zeroMatrix = getZeroRowsIndex(matrix);
-        ArrayList<Integer> zeroVektor = getZeroRowsIndex(vektor);
-        if (!zeroMatrix.equals(zeroVektor)) {
-            return 0;
-        }
-        if (zeroMatrix.isEmpty()) {
-            return 1;
+        for (int i = 0; i < vektor.size(); i++) {
+            if (matrix.get(i).isZero() && !vektor.get(i).isZero()) {
+                return -1;
+            }
         }
         return matrix.width() - dimColSpace(matrix);
     }
@@ -113,23 +115,19 @@ public class EquationSolver {
         System.out.println("\n");
     }
 
-
+    
 
     public void solve(Matrix matrix, Vektor vektor) {
         isValidEquation(matrix, vektor);
         printEquation(matrix, vektor);
-        int numberOfSolutions = determineSolutions(matrix, vektor);
+        int numberOfSolutions = dimSolution(matrix, vektor);
         Matrix inverse = new InverseMatrixCalculator().getInverse(matrix);
         operator.multiply(vektor, inverse);
-        if (numberOfSolutions == 0) {
+        if (numberOfSolutions == -1) {
             printNoSolutions();
         }
-        if (numberOfSolutions == 1) {
+        if (numberOfSolutions == 0) {
             printOneSolution(vektor);
         }
-    }
-
-    public static void main(String[] args) {
-        new EquationSolver().solve(new Matrix(2, 2), new Vektor(2));
     }
 }
