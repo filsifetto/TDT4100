@@ -2,8 +2,8 @@ package validators;
 
 import java.util.function.Predicate;
 
-import fundament.CompareByPivot;
 import fundament.Matrix;
+import operators.PivotComperator;
 
 public class RedusertTrappeformPredicate {
     private TrappeformPredicate refPredicate = new TrappeformPredicate();    
@@ -43,7 +43,7 @@ public class RedusertTrappeformPredicate {
 
     private boolean sortedByZeroRows(Matrix matrix) {
         Matrix compare = matrix.copy(); 
-        compare.sort(new CompareByPivot());
+        compare.sort(new PivotComperator());
         return matrix.equals(compare);
     }
 

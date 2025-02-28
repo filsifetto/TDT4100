@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Vektor extends Matrix {
     public Vektor(int rader) {
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < rader; i++) {
             Row row = new Row();
@@ -14,7 +15,6 @@ public class Vektor extends Matrix {
             row.add(Double.valueOf(tall));
             add(row);
         }
-        scanner.close();
     }
 
     public double getNumberAt(int rowNumber) {

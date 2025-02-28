@@ -1,7 +1,10 @@
 package fundament;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Matrix extends ArrayList<Row> { //Vurder å endre til LinkedList<Row>
 
@@ -58,5 +61,40 @@ public class Matrix extends ArrayList<Row> { //Vurder å endre til LinkedList<Ro
     }
 
     public Matrix() {
+    }
+
+    public Matrix(Set<Vektor> basis) {
+        ArrayList<Vektor> list = basis.stream()
+        .collect(Collectors
+        .toCollection(ArrayList<Vektor>::new));
+        
+        list.forEach(v -> v.forEach(r -> {
+            if (size() < v.indexOf(r) + 2) {
+                Row row = new Row();
+                row.add(r.get(0));
+                add(row);
+            }
+            else {
+                get(v.indexOf(r))
+                .add(r.get(0));
+            }
+        }));
+        // for (int i = 0; i < list.get(0).size(); i++) {
+        //     Row row = new Row();
+        //     for (Vektor v : list) {
+        //         row.add(v.getNumberAt(i));
+        //     }
+        //     add(row);
+        // }
+    }
+
+    public static void main(String[] args) {
+        Vektor v = new Vektor(2);
+        Vektor v2 = new Vektor(2);
+        Set<Vektor> basis = new HashSet<>();
+        basis.add(v2);
+        basis.add(v);
+        Matrix matrix = new Matrix(basis);
+        System.out.println(matrix);
     }
 }

@@ -1,7 +1,6 @@
 package kalkulasjoner;
 import java.util.ArrayList;
 
-import fundament.Clean;
 import fundament.Matrix;
 import fundament.Row;
 import fundament.Vektor;
@@ -16,7 +15,7 @@ public class EquationSolver {
     }
 
     private ArrayList<Integer> getZeroRowsIndex(Matrix matrix) {              //Gaussklasse / Equationsolver?
-        ArrayList<Integer> zero = new ArrayList<>();         //Gir ut hvilke rader som er nullraders
+        ArrayList<Integer> zero = new ArrayList<>();                          //Gir ut hvilke rader som er nullrader
         for (int i = 0; i < matrix.size(); i++) {
             if (matrix.get(i).isZero()) {
                 zero.add(i);
@@ -33,8 +32,8 @@ public class EquationSolver {
         Matrix inverse = new InverseMatrixCalculator().getInverse(matrix);
         operator.multiply(vektor, inverse);
         operator.multiply(matrix, inverse);
-        new Clean().clean(matrix);
-        new Clean().clean(vektor);
+        operator.clean(matrix);
+        operator.clean(vektor);
         ArrayList<Integer> zeroMatrix = getZeroRowsIndex(matrix);
         ArrayList<Integer> zeroVektor = getZeroRowsIndex(vektor);
         if (!zeroMatrix.equals(zeroVektor)) {
