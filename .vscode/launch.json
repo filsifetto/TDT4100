@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ProjectionCalculator",
+            "request": "launch",
+            "mainClass": "TDT4100_project/kalkulasjoner.ProjectionCalculator",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "VektorOperator",
+            "request": "launch",
+            "mainClass": "TDT4100_project/operators.VektorOperator",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
             "name": "VektorRom",
             "request": "launch",
             "mainClass": "TDT4100_project/fundament.VektorRom",

@@ -5,6 +5,8 @@ import java.util.stream.IntStream;
 import fundament.Matrix;
 import fundament.Row;
 import fundament.Vektor;
+import fundament.VektorRom;
+import kalkulasjoner.InverseMatrixCalculator;
 
 public class ToolMatrix {
     private MatrixOperator operator = new MatrixOperator();
@@ -96,5 +98,21 @@ public class ToolMatrix {
                     nullVektor.add(row);
                 });
         return nullVektor;
+    }
+
+    public Matrix projection(VektorRom vektorRom) {
+        if (!vektorRom.hasOrthogonalBasis()) {
+            throw new IllegalArgumentException("Kan ikke finne projeksjonsmatrise uten ortogonal basis");
+        }
+        Matrix A = new Matrix(vektorRom);
+        Matrix AT = A.copy();
+        operator.transpose(AT);
+        Matrix ATA = A.copy();
+        operator.multiply(ATA, AT);
+        Matrix ATAinvers = new InverseMatrixCalculator().getInverse(ATA);
+        Matrix P = AT.copy();
+        operator.multiply(P, ATAinvers);
+        operator.multiply(P, A);
+        return P;
     }
 }

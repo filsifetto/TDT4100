@@ -3,6 +3,8 @@ package fundament;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import operators.MatrixOperator;
+
 public class Matrix extends ArrayList<Row> { // Vurder å endre til LinkedList<Row>
 
     public void setRow(int rowNumber, Row row) {
@@ -60,6 +62,22 @@ public class Matrix extends ArrayList<Row> { // Vurder å endre til LinkedList<R
     public Matrix() {
     }
 
+    public Matrix(VektorRom vektorRom) {
+        ArrayList<Vektor> basis = vektorRom.getBasis();
+        for (Vektor v : basis) {
+            for (int i = 0; i < v.size(); i++) {
+                if (size() <= i) {
+                    Row row = new Row();
+                    row.add(v.getNumberAt(i));
+                    add(row);
+                } else {
+                    get(i).add(v.getNumberAt(i));
+                }
+            }
+        }
+        new MatrixOperator().clean(this);
+    }
+
     public Matrix(ArrayList<Vektor> basis) {
         for (Vektor v : basis) {
             for (int i = 0; i < v.size(); i++) {
@@ -72,35 +90,6 @@ public class Matrix extends ArrayList<Row> { // Vurder å endre til LinkedList<R
                 }
             }
         }
-        // basis.forEach(v -> v.forEach(r -> {
-        // if (size() < v.indexOf(r) + 1) {
-        // Row row = new Row();
-        // row.add(r.get(0));
-        // add(row);
-        // }
-        // else {
-        // get(v.indexOf(r))
-        // .add(r.get(0));
-        // }
-        // }));
-        // for (int i = 0; i < list.get(0).size(); i++) {
-        // Row row = new Row();
-        // for (Vektor v : list) {
-        // row.add(v.getNumberAt(i));
-        // }
-        // add(row);
-        // }
-    }
-
-    public static void main(String[] args) {
-        Vektor v = new Vektor(3);
-        Vektor v2 = new Vektor(3);
-        Vektor v3 = new Vektor(3);
-        ArrayList<Vektor> basis = new ArrayList<>();
-        basis.add(v);
-        basis.add(v2);
-        basis.add(v3);
-        Matrix matrix = new Matrix(basis);
-        System.out.println(matrix);
+        new MatrixOperator().clean(this);
     }
 }

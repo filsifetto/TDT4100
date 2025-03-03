@@ -38,7 +38,6 @@ public class EquationSolver {
         operator.multiply(matrix, inverse);
         operator.clean(matrix);
         operator.clean(vektor);
-        ArrayList<Integer> zeroMatrix = getZeroRowsIndex(matrix);
         for (int i = 0; i < vektor.size(); i++) {
             if (matrix.get(i).isZero() && !vektor.get(i).isZero()) {
                 return -1;
@@ -114,8 +113,6 @@ public class EquationSolver {
         }
         System.out.println("\n");
     }
-
-    
 
     public void solve(Matrix matrix, Vektor vektor) {
         isValidEquation(matrix, vektor);
