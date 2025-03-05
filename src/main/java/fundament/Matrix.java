@@ -63,19 +63,7 @@ public class Matrix extends ArrayList<Row> { // Vurder å endre til LinkedList<R
     }
 
     public Matrix(VektorRom vektorRom) {
-        ArrayList<Vektor> basis = vektorRom.getBasis();
-        for (Vektor v : basis) {
-            for (int i = 0; i < v.size(); i++) {
-                if (size() <= i) {
-                    Row row = new Row();
-                    row.add(v.getNumberAt(i));
-                    add(row);
-                } else {
-                    get(i).add(v.getNumberAt(i));
-                }
-            }
-        }
-        new MatrixOperator().clean(this);
+        this(vektorRom.getBasis());
     }
 
     public Matrix(ArrayList<Vektor> basis) {
