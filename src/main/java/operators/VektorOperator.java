@@ -2,7 +2,7 @@ package operators;
 
 import fundament.Vektor;
 
-public class VektorOperator extends MatrixOperator {
+public class VektorOperator {
 
     public static double skalarProdukt(Vektor v1, Vektor v2) {
         double sum = 0;
@@ -11,4 +11,7 @@ public class VektorOperator extends MatrixOperator {
         }
         return sum;
     }
+
+    private VektorOperator() {
+    };
 }

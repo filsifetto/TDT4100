@@ -1,4 +1,5 @@
 package kalkulasjoner;
+
 import java.util.ArrayList;
 
 import fundament.Matrix;
@@ -15,8 +16,8 @@ public class EquationSolver {
         }
     }
 
-    private static ArrayList<Integer> getZeroRowsIndex(Matrix matrix) {              //Gaussklasse / Equationsolver?
-        ArrayList<Integer> zero = new ArrayList<>();                          //Gir ut hvilke rader som er nullrader
+    private static ArrayList<Integer> getZeroRowsIndex(Matrix matrix) { // Gaussklasse / Equationsolver?
+        ArrayList<Integer> zero = new ArrayList<>(); // Gir ut hvilke rader som er nullrader
         for (int i = 0; i < matrix.size(); i++) {
             if (matrix.get(i).isZero()) {
                 zero.add(i);
@@ -48,10 +49,9 @@ public class EquationSolver {
 
     public static void printEquation(Matrix matrix, Vektor vektor) {
         for (int i = 0; i < matrix.size(); i++) {
-            if (i == matrix.size()/2) {
+            if (i == matrix.size() / 2) {
                 System.out.println(matrix.get(i) + "[x" + (i + 1) + "]  =  " + vektor.get(i));
-            }
-            else {
+            } else {
                 System.out.println(matrix.get(i) + "[x" + (i + 1) + "]     " + vektor.get(i));
             }
         }
@@ -69,7 +69,7 @@ public class EquationSolver {
         System.out.println("Likningen har ingen løsninger");
     }
 
-    private static ArrayList<Vektor> freeVectors(Matrix redusert, Vektor vektor, int frieVariabler) {              
+    private static ArrayList<Vektor> freeVectors(Matrix redusert, Vektor vektor, int frieVariabler) {
         ArrayList<Vektor> frieVektorer = new ArrayList<>();
         for (int i = dimColSpace(redusert); i < dimColSpace(redusert) + frieVariabler; i++) {
             Vektor fri = new Vektor();
@@ -78,10 +78,9 @@ public class EquationSolver {
                     Row vektorrad = new Row();
                     vektorrad.add(1.0);
                     fri.add(vektorrad);
-                }
-                else {
+                } else {
                     Row vektorrad = new Row();
-                    vektorrad.add(- redusert.getNumberAt(j, i));
+                    vektorrad.add(-redusert.getNumberAt(j, i));
                     fri.add(vektorrad);
                 }
             }
@@ -94,15 +93,14 @@ public class EquationSolver {
         String alfa = "stuvw";
         ArrayList<Vektor> vektorer = freeVectors(redusert, vektor, frieVariabler);
         for (int i = 0; i < redusert.width() - 1; i++) {
-            if (i == redusert.size()/2) {
+            if (i == redusert.size() / 2) {
                 String streng = "x = [";
                 for (int p = 0; p < vektorer.size() - 1; p++) {
                     streng += vektorer.get(p).get(i) + "] ";
                     streng += " + " + String.valueOf(alfa.charAt(p)) + " * [" + vektorer.get(p).getNumberAt(i) + "]";
                 }
                 System.out.println(streng);
-            }
-            else {
+            } else {
                 String streng = "    [";
                 for (int p = 0; p < vektorer.size(); p++) {
                     streng += vektorer.get(p).get(i) + "] ";
@@ -127,4 +125,7 @@ public class EquationSolver {
             printOneSolution(vektor);
         }
     }
+
+    private EquationSolver() {
+    };
 }

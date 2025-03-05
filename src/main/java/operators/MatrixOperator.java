@@ -55,8 +55,11 @@ public class MatrixOperator {
             temp.stream()
                     .map(d -> Math.round(d * 100) / 100.0)
                     .collect(Collectors
-                    .toCollection(Row::new))
+                            .toCollection(Row::new))
                     .forEach(d -> row.add(d));
         });
     }
+
+    private MatrixOperator() {
+    };
 }

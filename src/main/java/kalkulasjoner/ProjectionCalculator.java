@@ -7,7 +7,7 @@ import operators.MatrixOperator;
 import operators.ToolMatrix;
 
 public class ProjectionCalculator {
-    
+
     public static Vektor project(Vektor vektor, VektorRom vektorRom) {
         if (vektor.dim() != vektorRom.getBasis().get(0).dim()) {
             throw new IllegalArgumentException(vektorRom + "er ikke et underrom av R" + vektor.dim());
@@ -24,4 +24,7 @@ public class ProjectionCalculator {
         Vektor projection = project(vektor, vektorRom);
         System.out.println("Vektoren \n" + vektor + "Projisert på " + vektorRom + " er \n" + projection);
     }
+
+    private ProjectionCalculator() {
+    };
 }

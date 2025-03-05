@@ -1,4 +1,5 @@
 package gausseliminasjon;
+
 import java.util.ArrayList;
 
 import fundament.Matrix;
@@ -19,7 +20,8 @@ public class RadOperasjoner {
         radOperasjoner.add(scaleMatrix);
     }
 
-    public static void rowReduction(ArrayList<Matrix> radOperasjoner, Matrix matrix, int radFra, int radTil, double scalar) {
+    public static void rowReduction(ArrayList<Matrix> radOperasjoner, Matrix matrix, int radFra, int radTil,
+            double scalar) {
         Matrix reductionMatrix = ToolMatrix.reduction(matrix, radFra, radTil, scalar);
         MatrixOperator.multiply(matrix, reductionMatrix);
         radOperasjoner.add(reductionMatrix);
@@ -37,7 +39,7 @@ public class RadOperasjoner {
         radOperasjoner.add(eliminateUpMatrix);
     }
 
-    public static void sortByPivot(ArrayList<Matrix> radOperasjoner, Matrix matrix) {   
+    public static void sortByPivot(ArrayList<Matrix> radOperasjoner, Matrix matrix) {
         for (int i = 1; i < matrix.size(); i++) {
             if (matrix.get(i).getPivotIndex() < matrix.get(i - 1).getPivotIndex()) {
                 Matrix radBytteMatrix = ToolMatrix.radBytte(matrix, i, i - 1);
@@ -46,4 +48,7 @@ public class RadOperasjoner {
             }
         }
     }
+
+    private RadOperasjoner() {
+    };
 }

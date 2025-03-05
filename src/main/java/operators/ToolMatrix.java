@@ -114,4 +114,7 @@ public class ToolMatrix {
         MatrixOperator.multiply(P, A);
         return P;
     }
+
+    private ToolMatrix() {
+    };
 }

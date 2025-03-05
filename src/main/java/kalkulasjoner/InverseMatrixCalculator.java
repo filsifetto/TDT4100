@@ -16,4 +16,7 @@ public class InverseMatrixCalculator {
         }
         return inverse;
     }
+
+    private InverseMatrixCalculator() {
+    };
 }

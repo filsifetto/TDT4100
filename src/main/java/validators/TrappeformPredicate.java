@@ -11,13 +11,13 @@ public class TrappeformPredicate {
             for (int j = 0; j < matrix.size(); j++) {
                 if (matrix.getNumberAt(j, i) != 0) {
                     boolean pivot = true;
-                    for (int p = 0; p < i; p++) {       //Sjekker om det finnes et tall ulik 0 til venstre for pivot
+                    for (int p = 0; p < i; p++) { // Sjekker om det finnes et tall ulik 0 til venstre for pivot
                         if (matrix.getNumberAt(j, p) != 0) {
                             pivot = false;
                         }
                     }
                     if (pivot) {
-                        for (int p = j + 1; p < matrix.size(); p++) {         //Sjekker om det finnes et tall under
+                        for (int p = j + 1; p < matrix.size(); p++) { // Sjekker om det finnes et tall under
                             if (matrix.getNumberAt(p, i) != 0) {
                                 ut = false;
                                 break;
@@ -33,4 +33,7 @@ public class TrappeformPredicate {
     public static boolean test(Matrix matrix) {
         return predicate.test(matrix);
     }
+
+    private TrappeformPredicate() {
+    };
 }

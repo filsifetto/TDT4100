@@ -29,7 +29,7 @@ public class RedusertTrappeformPredicate {
                             ut = false;
                         }
                         for (int p = 0; p < j; p++) {
-                            if (matrix.getNumberAt(p, i) != 0) {      //Sjekk om det finnes et tall ulik 0 over pivot
+                            if (matrix.getNumberAt(p, i) != 0) { // Sjekk om det finnes et tall ulik 0 over pivot
                                 ut = false;
                                 break;
                             }
@@ -42,14 +42,15 @@ public class RedusertTrappeformPredicate {
     };
 
     private static boolean sortedByZeroRows(Matrix matrix) {
-        Matrix compare = matrix.copy(); 
+        Matrix compare = matrix.copy();
         compare.sort(new PivotComperator());
         return matrix.equals(compare);
     }
 
-
     public static boolean test(Matrix matrix) {
         return predicate.test(matrix);
     }
-}
 
+    private RedusertTrappeformPredicate() {
+    };
+}
