@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import operators.MatrixOperator;
 
-public class Matrix extends ArrayList<Row> { // Vurder å endre til LinkedList<Row>
+public class Matrix extends ArrayList<Row> {
 
     public void setRow(int rowNumber, Row row) {
         set(rowNumber, row);
@@ -59,6 +59,10 @@ public class Matrix extends ArrayList<Row> { // Vurder å endre til LinkedList<R
         }
     }
 
+    public Matrix(int rader) {
+        this(rader, rader);
+    }
+
     public Matrix() {
     }
 
@@ -78,6 +82,6 @@ public class Matrix extends ArrayList<Row> { // Vurder å endre til LinkedList<R
                 }
             }
         }
-        new MatrixOperator().clean(this);
+        MatrixOperator.clean(this);
     }
 }

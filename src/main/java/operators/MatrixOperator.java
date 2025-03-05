@@ -6,14 +6,14 @@ import fundament.Matrix;
 import fundament.Row;
 
 public class MatrixOperator {
-    private void isValidMultiplication(Matrix matrix1, Matrix matrix2) {
+    private static void isValidMultiplication(Matrix matrix1, Matrix matrix2) {
         if (matrix2.width() != matrix1.size()) {
             throw new IllegalArgumentException("Du kan ikke multiplisere en matrise med " + matrix2.width()
                     + " kolonner med en matrise med " + matrix1.size() + " rader!");
         }
     }
 
-    public void multiply(Matrix matrix1, Matrix matrix2) {
+    public static void multiply(Matrix matrix1, Matrix matrix2) {
         isValidMultiplication(matrix1, matrix2);
         Matrix tempMatrix = matrix1.copy();
         matrix1.clear();
@@ -36,7 +36,7 @@ public class MatrixOperator {
         }
     }
 
-    public void transpose(Matrix matrix) {
+    public static void transpose(Matrix matrix) {
         Matrix tempMatrix = matrix.copy();
         matrix.clear();
         for (int i = 0; i < tempMatrix.width(); i++) {
@@ -48,7 +48,7 @@ public class MatrixOperator {
         }
     }
 
-    public void clean(Matrix matrix) {
+    public static void clean(Matrix matrix) {
         matrix.forEach(row -> {
             Row temp = (Row) row.clone();
             row.clear();

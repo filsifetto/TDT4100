@@ -8,15 +8,15 @@ import operators.ToolMatrix;
 
 public class ProjectionCalculator {
     
-    public Vektor project(Vektor vektor, VektorRom vektorRom) {
+    public static Vektor project(Vektor vektor, VektorRom vektorRom) {
         if (vektor.dim() != vektorRom.getBasis().get(0).dim()) {
             throw new IllegalArgumentException(vektorRom + "er ikke et underrom av R" + vektor.dim());
         }
         vektorRom.setOrtogonalBasis();
-        Matrix P = new ToolMatrix().projection(vektorRom);
+        Matrix P = ToolMatrix.projection(vektorRom);
         Vektor projection = vektor.copy();
-        new MatrixOperator().multiply(projection, P);
-        new MatrixOperator().clean(projection);
+        MatrixOperator.multiply(projection, P);
+        MatrixOperator.clean(projection);
         return projection;
     }
 

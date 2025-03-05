@@ -8,8 +8,6 @@ import validators.TrappeformPredicate;
 public class Gausser {
     private Matrix matrix;
     private ArrayList<Matrix> radOperasjonListe = new ArrayList<>();
-    private TrappeformPredicate trappeform = new TrappeformPredicate();
-    private RadOperasjoner gauss = new RadOperasjoner();
     
     private ArrayList<Integer> identifyElimination() {
         ArrayList<Integer> eliminationRows = new ArrayList<>();
@@ -24,22 +22,22 @@ public class Gausser {
     }
 
     public void gaussNed() {
-        while (!trappeform.test(matrix)) {
-            gauss.sortByPivot(radOperasjonListe, matrix);
-            gauss.scaleByPivot(radOperasjonListe, matrix);
-            if (trappeform.test(matrix)) {
+        while (!TrappeformPredicate.test(matrix)) {
+            RadOperasjoner.sortByPivot(radOperasjonListe, matrix);
+            RadOperasjoner.scaleByPivot(radOperasjonListe, matrix);
+            if (TrappeformPredicate.test(matrix)) {
                 break;
             }
             ArrayList<Integer> elimRows = identifyElimination();
-            gauss.rowReduction(radOperasjonListe, matrix, elimRows.get(0), elimRows.get(1), 1);
-            gauss.scaleByPivot(radOperasjonListe, matrix);
+            RadOperasjoner.rowReduction(radOperasjonListe, matrix, elimRows.get(0), elimRows.get(1), 1);
+            RadOperasjoner.scaleByPivot(radOperasjonListe, matrix);
         }
     }
 
     public void gaussOpp() {
-        gauss.scaleByPivot(radOperasjonListe, matrix);
-        gauss.eliminateUp(radOperasjonListe, matrix);
-        gauss.sortByPivot(radOperasjonListe, matrix);
+        RadOperasjoner.scaleByPivot(radOperasjonListe, matrix);
+        RadOperasjoner.eliminateUp(radOperasjonListe, matrix);
+        RadOperasjoner.sortByPivot(radOperasjonListe, matrix);
     }
 
     public void gaussEliminasjon() {

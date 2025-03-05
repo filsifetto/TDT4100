@@ -9,15 +9,14 @@ import fundament.VektorRom;
 import kalkulasjoner.InverseMatrixCalculator;
 
 public class ToolMatrix {
-    private MatrixOperator operator = new MatrixOperator();
 
-    private void isValidRow(Matrix matrix, int rowNumber) {
+    private static void isValidRow(Matrix matrix, int rowNumber) {
         if (rowNumber < 0 || rowNumber >= matrix.size()) {
             throw new IllegalArgumentException();
         }
     }
 
-    public Matrix identity(Matrix matrix) { // MatrixOperator
+    public static Matrix identity(Matrix matrix) { // MatrixOperator
         Matrix identityMatrix = new Matrix();
         for (int i = 0; i < matrix.size(); i++) {
             Row row = new Row();
@@ -33,7 +32,7 @@ public class ToolMatrix {
         return identityMatrix;
     }
 
-    public Matrix radBytte(Matrix matrix, int rad1, int rad2) { // MatrixOperator
+    public static Matrix radBytte(Matrix matrix, int rad1, int rad2) { // MatrixOperator
         isValidRow(matrix, rad1);
         isValidRow(matrix, rad2);
         Matrix iD = identity(matrix);
@@ -43,7 +42,7 @@ public class ToolMatrix {
         return iD;
     }
 
-    public Matrix scale(Matrix matrix, int row, double scalar) { // MatrixOperator
+    public static Matrix scale(Matrix matrix, int row, double scalar) { // MatrixOperator
         isValidRow(matrix, row);
         Matrix iD = identity(matrix);
         for (int i = 0; i < iD.width(); i++) {
@@ -52,7 +51,7 @@ public class ToolMatrix {
         return iD;
     }
 
-    public Matrix reduction(Matrix matrix, int rowFrom, int rowTo, double scalar) { // MatrixOperator
+    public static Matrix reduction(Matrix matrix, int rowFrom, int rowTo, double scalar) { // MatrixOperator
         isValidRow(matrix, rowFrom);
         isValidRow(matrix, rowTo);
         Matrix iD = identity(matrix);
@@ -60,7 +59,7 @@ public class ToolMatrix {
         return iD;
     }
 
-    public Matrix scaleByPivot(Matrix matrix) { // MatrixOperator
+    public static Matrix scaleByPivot(Matrix matrix) { // MatrixOperator
         Matrix iD = identity(matrix);
         for (int i = 0; i < matrix.size(); i++) {
             for (int j = 0; j < matrix.width(); j++) {
@@ -73,7 +72,7 @@ public class ToolMatrix {
         return iD;
     }
 
-    public Matrix eliminateUp(Matrix matrix) { // Gauss-Klasse istedet
+    public static Matrix eliminateUp(Matrix matrix) { // Gauss-Klasse istedet
         Matrix iD = identity(matrix);
         for (int i = matrix.size() - 1; i > 0; i--) {
             int pivotIndex = matrix.get(i).getPivotIndex();
@@ -83,13 +82,13 @@ public class ToolMatrix {
             for (int j = 1; j <= i; j++) {
                 double scalar = matrix.getNumberAt(i - j, pivotIndex);
                 Matrix temp = reduction(matrix, i, i - j, scalar);
-                operator.multiply(iD, temp);
+                MatrixOperator.multiply(iD, temp);
             }
         }
         return iD;
     }
 
-    public Vektor nullVektor(int dim) {
+    public static Vektor nullVektor(int dim) {
         Vektor nullVektor = new Vektor();
         IntStream.range(0, dim)
                 .forEach(i -> {
@@ -100,19 +99,19 @@ public class ToolMatrix {
         return nullVektor;
     }
 
-    public Matrix projection(VektorRom vektorRom) {
+    public static Matrix projection(VektorRom vektorRom) {
         if (!vektorRom.hasOrthogonalBasis()) {
             throw new IllegalArgumentException("Kan ikke finne projeksjonsmatrise uten ortogonal basis");
         }
         Matrix A = new Matrix(vektorRom);
         Matrix AT = A.copy();
-        operator.transpose(AT);
+        MatrixOperator.transpose(AT);
         Matrix ATA = A.copy();
-        operator.multiply(ATA, AT);
-        Matrix ATAinvers = new InverseMatrixCalculator().getInverse(ATA);
+        MatrixOperator.multiply(ATA, AT);
+        Matrix ATAinvers = InverseMatrixCalculator.getInverse(ATA);
         Matrix P = AT.copy();
-        operator.multiply(P, ATAinvers);
-        operator.multiply(P, A);
+        MatrixOperator.multiply(P, ATAinvers);
+        MatrixOperator.multiply(P, A);
         return P;
     }
 }

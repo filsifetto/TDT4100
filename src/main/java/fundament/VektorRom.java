@@ -15,7 +15,7 @@ public class VektorRom {
         basis.forEach(t -> vektorMengde.add(t));
         vektorMengde.add(vektor);
         Matrix A = new Matrix(vektorMengde);
-        if (new EquationSolver().dimSolution(A, new ToolMatrix().nullVektor(vektor.size())) > 0) {
+        if (EquationSolver.dimSolution(A, ToolMatrix.nullVektor(vektor.size())) > 0) {
             return true;
         }
         return false;
@@ -32,9 +32,9 @@ public class VektorRom {
         for (Vektor v : temp) {
             Vektor u = v.copy();
             for (Vektor w : basis) {
-                Matrix ProjW = new ToolMatrix().projection(new VektorRom(w));
+                Matrix ProjW = ToolMatrix.projection(new VektorRom(w));
                 Vektor uProjW = u.copy();
-                new MatrixOperator().multiply(uProjW, ProjW);
+                MatrixOperator.multiply(uProjW, ProjW);
                 u.subtract(uProjW);
             }
             basis.add(u);
@@ -58,7 +58,7 @@ public class VektorRom {
         boolean status = true;
         for (Vektor v : basis) {
             for (Vektor u : basis) {
-                double scalarProduct = Math.round(new VektorOperator().skalarProdukt(v, u)*100)/100.0;
+                double scalarProduct = Math.round(VektorOperator.skalarProdukt(v, u)*100)/100.0;
                 if (scalarProduct != 0 && !(u == v)) {
                     status = false;
                 }

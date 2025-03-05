@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import fundament.Matrix;
 
 public class TrappeformPredicate {
-    private Predicate<Matrix> predicate = (matrix) -> {
+    private static Predicate<Matrix> predicate = (matrix) -> {
         boolean ut = true;
         for (int i = 0; i < matrix.width(); i++) {
             for (int j = 0; j < matrix.size(); j++) {
@@ -30,7 +30,7 @@ public class TrappeformPredicate {
         return ut;
     };
 
-    public boolean test(Matrix matrix) {
+    public static boolean test(Matrix matrix) {
         return predicate.test(matrix);
     }
 }

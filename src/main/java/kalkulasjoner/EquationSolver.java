@@ -8,14 +8,14 @@ import operators.MatrixOperator;
 import validators.RedusertTrappeformPredicate;
 
 public class EquationSolver {
-    private MatrixOperator operator = new MatrixOperator();
-    private void isValidEquation(Matrix matrix, Vektor vektor) {
+
+    private static void isValidEquation(Matrix matrix, Vektor vektor) {
         if (matrix.size() != vektor.size()) {
             throw new IllegalArgumentException();
         }
     }
 
-    private ArrayList<Integer> getZeroRowsIndex(Matrix matrix) {              //Gaussklasse / Equationsolver?
+    private static ArrayList<Integer> getZeroRowsIndex(Matrix matrix) {              //Gaussklasse / Equationsolver?
         ArrayList<Integer> zero = new ArrayList<>();                          //Gir ut hvilke rader som er nullrader
         for (int i = 0; i < matrix.size(); i++) {
             if (matrix.get(i).isZero()) {
@@ -25,19 +25,19 @@ public class EquationSolver {
         return zero;
     }
 
-    private int dimColSpace(Matrix matrix) {
-        if (!new RedusertTrappeformPredicate().test(matrix)) {
+    private static int dimColSpace(Matrix matrix) {
+        if (!RedusertTrappeformPredicate.test(matrix)) {
             throw new IllegalArgumentException();
         }
         return matrix.size() - getZeroRowsIndex(matrix).size();
     }
 
-    public int dimSolution(Matrix matrix, Vektor vektor) {
-        Matrix inverse = new InverseMatrixCalculator().getInverse(matrix);
-        operator.multiply(vektor, inverse);
-        operator.multiply(matrix, inverse);
-        operator.clean(matrix);
-        operator.clean(vektor);
+    public static int dimSolution(Matrix matrix, Vektor vektor) {
+        Matrix inverse = InverseMatrixCalculator.getInverse(matrix);
+        MatrixOperator.multiply(vektor, inverse);
+        MatrixOperator.multiply(matrix, inverse);
+        MatrixOperator.clean(matrix);
+        MatrixOperator.clean(vektor);
         for (int i = 0; i < vektor.size(); i++) {
             if (matrix.get(i).isZero() && !vektor.get(i).isZero()) {
                 return -1;
@@ -46,7 +46,7 @@ public class EquationSolver {
         return matrix.width() - dimColSpace(matrix);
     }
 
-    public void printEquation(Matrix matrix, Vektor vektor) {
+    public static void printEquation(Matrix matrix, Vektor vektor) {
         for (int i = 0; i < matrix.size(); i++) {
             if (i == matrix.size()/2) {
                 System.out.println(matrix.get(i) + "[x" + (i + 1) + "]  =  " + vektor.get(i));
@@ -58,18 +58,18 @@ public class EquationSolver {
         System.out.println("\n");
     }
 
-    public void printOneSolution(Vektor vektor) {
+    public static void printOneSolution(Vektor vektor) {
         for (int i = 0; i < vektor.size(); i++) {
             String streng = "x" + (i + 1) + " = " + vektor.getNumberAt(i);
             System.out.println(streng);
         }
     }
 
-    public void printNoSolutions() {
+    public static void printNoSolutions() {
         System.out.println("Likningen har ingen løsninger");
     }
 
-    private ArrayList<Vektor> freeVectors(Matrix redusert, Vektor vektor, int frieVariabler) {              
+    private static ArrayList<Vektor> freeVectors(Matrix redusert, Vektor vektor, int frieVariabler) {              
         ArrayList<Vektor> frieVektorer = new ArrayList<>();
         for (int i = dimColSpace(redusert); i < dimColSpace(redusert) + frieVariabler; i++) {
             Vektor fri = new Vektor();
@@ -90,7 +90,7 @@ public class EquationSolver {
         return frieVektorer;
     }
 
-    public void printSolutionWithFreeVariables(Matrix redusert, Vektor vektor, int frieVariabler) {
+    public static void printSolutionWithFreeVariables(Matrix redusert, Vektor vektor, int frieVariabler) {
         String alfa = "stuvw";
         ArrayList<Vektor> vektorer = freeVectors(redusert, vektor, frieVariabler);
         for (int i = 0; i < redusert.width() - 1; i++) {
@@ -114,12 +114,12 @@ public class EquationSolver {
         System.out.println("\n");
     }
 
-    public void solve(Matrix matrix, Vektor vektor) {
+    public static void solve(Matrix matrix, Vektor vektor) {
         isValidEquation(matrix, vektor);
         printEquation(matrix, vektor);
         int numberOfSolutions = dimSolution(matrix, vektor);
-        Matrix inverse = new InverseMatrixCalculator().getInverse(matrix);
-        operator.multiply(vektor, inverse);
+        Matrix inverse = InverseMatrixCalculator.getInverse(matrix);
+        MatrixOperator.multiply(vektor, inverse);
         if (numberOfSolutions == -1) {
             printNoSolutions();
         }

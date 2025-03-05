@@ -6,10 +6,10 @@ import fundament.Matrix;
 import operators.PivotComperator;
 
 public class RedusertTrappeformPredicate {
-    private TrappeformPredicate refPredicate = new TrappeformPredicate();    
-    private Predicate<Matrix> predicate = (matrix) -> {
+
+    private static Predicate<Matrix> predicate = (matrix) -> {
         boolean ut = true;
-        if (!refPredicate.test(matrix)) {
+        if (!TrappeformPredicate.test(matrix)) {
             return false;
         }
         if (!sortedByZeroRows(matrix)) {
@@ -41,14 +41,14 @@ public class RedusertTrappeformPredicate {
         return ut;
     };
 
-    private boolean sortedByZeroRows(Matrix matrix) {
+    private static boolean sortedByZeroRows(Matrix matrix) {
         Matrix compare = matrix.copy(); 
         compare.sort(new PivotComperator());
         return matrix.equals(compare);
     }
 
 
-    public boolean test(Matrix matrix) {
+    public static boolean test(Matrix matrix) {
         return predicate.test(matrix);
     }
 }
