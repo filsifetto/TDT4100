@@ -44,6 +44,12 @@ public class Vektor extends Matrix {
         }
     }
 
+    public void scale(double scalar) {
+        forEach(r -> {
+            r.set(0, r.get(0)*scalar);
+        });
+    }
+
     public int dim() {
         return size();
     }
