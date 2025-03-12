@@ -20,7 +20,7 @@ public class ProjectionCalculator {
         return projection;
     }
 
-    public void printProjection(Vektor vektor, VektorRom vektorRom) {
+    public static void printProjection(Vektor vektor, VektorRom vektorRom) {
         Vektor projection = project(vektor, vektorRom);
         System.out.println("Vektoren \n" + vektor + "Projisert på " + vektorRom + " er \n" + projection);
     }

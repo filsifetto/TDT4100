@@ -6,6 +6,48 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Kompleks",
+            "request": "launch",
+            "mainClass": "TDT4100_project/fundament.Kompleks",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "LesingFraFil",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.LesingFraFil",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Word",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.Word",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "MailAdress",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.MailAdress",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Plate",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.Plate",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "MinKontaktliste",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.MinKontaktliste",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
             "name": "ProjectionCalculator",
             "request": "launch",
             "mainClass": "TDT4100_project/kalkulasjoner.ProjectionCalculator",

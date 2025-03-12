@@ -1,6 +1,7 @@
 package fundament;
 
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Vektor extends Matrix {
     public Vektor(int rader) {
@@ -55,5 +56,29 @@ public class Vektor extends Matrix {
     }
 
     public Vektor() {
+    }
+
+    public Vektor(Double... doubles) {
+        Stream.of(doubles)
+                .forEach(d -> {
+                    Row row = new Row();
+                    row.add(d);
+                    add(row);
+                });
+    }
+
+    public Vektor(Integer... integers) {
+        Stream.of(integers)
+                .mapToDouble(i -> Double.valueOf(i))
+                .forEach(d -> {
+                    Row row = new Row();
+                    row.add(d);
+                    add(row);
+                });
+    }
+
+    public static void main(String[] args) {
+        Vektor vektor = new Vektor(1, 2, 3);
+        System.out.println(vektor);
     }
 }

@@ -48,6 +48,7 @@ public class MatrixOperator {
         }
     }
 
+
     public static void clean(Matrix matrix) {
         matrix.forEach(row -> {
             Row temp = (Row) row.clone();

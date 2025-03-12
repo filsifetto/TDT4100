@@ -2,6 +2,7 @@ package fundament;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import operators.MatrixOperator;
 
@@ -64,6 +65,10 @@ public class Matrix extends ArrayList<Row> {
     }
 
     public Matrix() {
+    }
+
+    public Matrix(Row... rows) {
+        addAll(Stream.of(rows).toList());
     }
 
     public Matrix(VektorRom vektorRom) {

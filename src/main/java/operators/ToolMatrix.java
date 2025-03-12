@@ -2,6 +2,7 @@ package operators;
 
 import java.util.stream.IntStream;
 
+import fundament.Kompleks;
 import fundament.Matrix;
 import fundament.Row;
 import fundament.Vektor;
@@ -113,6 +114,16 @@ public class ToolMatrix {
         MatrixOperator.multiply(P, ATAinvers);
         MatrixOperator.multiply(P, A);
         return P;
+    }
+
+    public static Matrix complex(Kompleks z) {
+        Row r1 = new Row();
+        r1.add(z.getReal());
+        r1.add(-z.getImaginary());
+        Row r2 = new Row();
+        r2.add(z.getImaginary());
+        r2.add(z.getReal());
+        return new Matrix(r1, r2);
     }
 
     private ToolMatrix() {
