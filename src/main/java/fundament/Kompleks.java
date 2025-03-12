@@ -3,7 +3,7 @@ package fundament;
 import operators.MatrixOperator;
 import operators.ToolMatrix;
 
-public class Kompleks extends Vektor {  
+public class Kompleks extends Vektor {
 
     @Override
     public String toString() {
@@ -37,6 +37,24 @@ public class Kompleks extends Vektor {
             ToolMatrix.complex(w));
     }
 
+    public void add(Kompleks w) {
+        setNumberAt(0, getReal() + w.getReal());
+        setNumberAt(1, getImaginary() + w.getImaginary());
+    }
+
+    public double getAngle() {
+        return Math.atan2(getImaginary(), getReal());
+    }
+
+    public double getLength() {
+        return Math.sqrt(Math.pow(getReal(), 2) + Math.pow(getImaginary(), 2));
+    }
+
+    public void printPolar() {
+        String string = String.format("%.1fe^%.2fi", getLength(), getAngle());
+        System.out.println(string);
+    }
+
     Kompleks(double a, double b) {
         super(a, b);
     }
@@ -46,10 +64,12 @@ public class Kompleks extends Vektor {
     }
 
     public static void main(String[] args) {
-        Kompleks kompleks = new Kompleks(1.2, 2.0);
-        Kompleks k2 = new Kompleks(2);
+        Kompleks kompleks = new Kompleks(1, 1.0);
+        Kompleks k2 = new Kompleks(0,1);
         System.out.println(kompleks);
         System.out.println(k2);
+        kompleks.printPolar();
+        k2.printPolar();
         kompleks.multiply(k2);
         System.out.println(kompleks);
     }
