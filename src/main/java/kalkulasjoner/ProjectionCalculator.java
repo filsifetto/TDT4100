@@ -1,10 +1,10 @@
 package kalkulasjoner;
 
-import fundament.Matrix;
+import fundament.RealMatrix;
 import fundament.Vektor;
 import fundament.VektorRom;
-import operators.MatrixOperator;
-import operators.ToolMatrix;
+import operators.RealMatrixOperator;
+import operators.RealToolMatrix;
 
 public class ProjectionCalculator {
 
@@ -13,10 +13,10 @@ public class ProjectionCalculator {
             throw new IllegalArgumentException(vektorRom + "er ikke et underrom av R" + vektor.dim());
         }
         vektorRom.setOrtogonalBasis();
-        Matrix P = ToolMatrix.projection(vektorRom);
+        RealMatrix P = RealToolMatrix.projection(vektorRom);
         Vektor projection = vektor.copy();
-        MatrixOperator.multiply(projection, P);
-        MatrixOperator.clean(projection);
+        RealMatrixOperator.multiply(projection, P);
+        RealMatrixOperator.clean(projection);
         return projection;
     }
 

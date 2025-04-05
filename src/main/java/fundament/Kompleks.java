@@ -1,7 +1,7 @@
 package fundament;
 
-import operators.MatrixOperator;
-import operators.ToolMatrix;
+import operators.RealMatrixOperator;
+import operators.RealToolMatrix;
 
 public class Kompleks extends Vektor {
 
@@ -32,9 +32,9 @@ public class Kompleks extends Vektor {
     }
 
     public void multiply(Kompleks w) {
-        MatrixOperator.multiply(
+        RealMatrixOperator.multiply(
             this, 
-            ToolMatrix.complex(w));
+            RealToolMatrix.complex(w));
     }
 
     public void add(Kompleks w) {

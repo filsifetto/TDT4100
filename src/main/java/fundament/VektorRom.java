@@ -3,8 +3,8 @@ package fundament;
 import java.util.ArrayList;
 
 import kalkulasjoner.EquationSolver;
-import operators.MatrixOperator;
-import operators.ToolMatrix;
+import operators.RealMatrixOperator;
+import operators.RealToolMatrix;
 import operators.VektorOperator;
 
 public class VektorRom {
@@ -14,8 +14,8 @@ public class VektorRom {
         ArrayList<Vektor> vektorMengde = new ArrayList<>();
         basis.forEach(t -> vektorMengde.add(t));
         vektorMengde.add(vektor);
-        Matrix A = new Matrix(vektorMengde);
-        if (EquationSolver.dimSolution(A, ToolMatrix.nullVektor(vektor.size())) > 0) {
+        RealMatrix A = new RealMatrix(vektorMengde);
+        if (EquationSolver.dimSolution(A, RealToolMatrix.nullVektor(vektor.size())) > 0) {
             return true;
         }
         return false;
@@ -32,9 +32,9 @@ public class VektorRom {
         for (Vektor v : temp) {
             Vektor u = v.copy();
             for (Vektor w : basis) {
-                Matrix ProjW = ToolMatrix.projection(new VektorRom(w));
+                RealMatrix ProjW = RealToolMatrix.projection(new VektorRom(w));
                 Vektor uProjW = u.copy();
-                MatrixOperator.multiply(uProjW, ProjW);
+                RealMatrixOperator.multiply(uProjW, ProjW);
                 u.subtract(uProjW);
             }
             basis.add(u);
@@ -70,7 +70,7 @@ public class VektorRom {
     @Override
     public String toString() {
         String string = "Vektorrommet spent ut av kolonnene i matrisen \n";
-        string += new Matrix(basis);
+        string += new RealMatrix(basis);
         return string;
     }
 

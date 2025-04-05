@@ -2,17 +2,20 @@ package gausseliminasjon;
 
 import java.util.ArrayList;
 
-import fundament.Matrix;
+import fundament.RealMatrix;
 import validators.TrappeformPredicate;
 
 public class Gausser {
-    private Matrix matrix;
-    private ArrayList<Matrix> radOperasjonListe = new ArrayList<>();
+    private RealMatrix matrix;
+    private ArrayList<RealMatrix> radOperasjonListe = new ArrayList<>();
     
     private ArrayList<Integer> identifyElimination() {
         ArrayList<Integer> eliminationRows = new ArrayList<>();
         for (int i = 1; i < matrix.size(); i++) {
-            if (matrix.get(i).getPivotIndex() == matrix.get(i - 1).getPivotIndex()) {
+            if (matrix.get(i).getPivotIndex().isEmpty() || matrix.get(i - 1).getPivotIndex().isEmpty()) {
+                continue;
+            }
+            if (matrix.get(i).getPivotIndex().getAsInt() == matrix.get(i - 1).getPivotIndex().getAsInt()) {
                 eliminationRows.add(i-1);
                 eliminationRows.add(i);
                 break;
@@ -45,11 +48,11 @@ public class Gausser {
         gaussOpp();
     }
 
-    public ArrayList<Matrix> getRowOperations() {
+    public ArrayList<RealMatrix> getRowOperations() {
         return radOperasjonListe;
     }
 
-    public Gausser(Matrix matrix) {
+    public Gausser(RealMatrix matrix) {
         this.matrix = matrix.copy();
     }
 }

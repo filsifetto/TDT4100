@@ -6,6 +6,216 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TrappeformPredicate",
+            "request": "launch",
+            "mainClass": "TDT4100_project/validators.TrappeformPredicate",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "RedusertTrappeformPredicate",
+            "request": "launch",
+            "mainClass": "TDT4100_project/validators.RedusertTrappeformPredicate",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "AbstractRow",
+            "request": "launch",
+            "mainClass": "TDT4100_project/fundament.AbstractRow",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "PivotComperator",
+            "request": "launch",
+            "mainClass": "TDT4100_project/operators.PivotComperator",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "AbstractMatrix",
+            "request": "launch",
+            "mainClass": "TDT4100_project/fundament.AbstractMatrix",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "RealMatrix",
+            "request": "launch",
+            "mainClass": "TDT4100_project/fundament.RealMatrix",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "RealRow",
+            "request": "launch",
+            "mainClass": "TDT4100_project/fundament.RealRow",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Row",
+            "request": "launch",
+            "mainClass": "TDT4100_project/fundament.Row",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.Test",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "VarslingTest",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.VarslingTest",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "FilsystemTest",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.FilsystemTest",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Folder",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.Folder",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "File",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.File",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "PersonRegister",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.PersonRegister",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "InMemoryRepository",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.InMemoryRepository",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "ItemStorage",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.ItemStorage",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "MAC",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.MAC",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "TekstAnalyse",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.TekstAnalyse",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "IntegerIntern",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.IntegerIntern",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Person",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.Person",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Kladd",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.Kladd",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Leaderboard",
+            "request": "launch",
+            "mainClass": "TDT4100_project/App.Leaderboard",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "StopWatch",
+            "request": "launch",
+            "mainClass": "TDT4100_project/App.StopWatch",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "ProjectApp",
+            "request": "launch",
+            "mainClass": "TDT4100_project/exampleproject.ProjectApp",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "TaskGenerator",
+            "request": "launch",
+            "mainClass": "TDT4100_project/App.TaskGenerator",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "FileHandler",
+            "request": "launch",
+            "mainClass": "TDT4100_project/App.FileHandler",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "MatrixBank",
+            "request": "launch",
+            "mainClass": "TDT4100_project/App.MatrixBank",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "TDT4100_project/App.Main",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "MatrixBankGenerator",
+            "request": "launch",
+            "mainClass": "TDT4100_project/App.MatrixBankGenerator",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
+            "name": "FileHandler",
+            "request": "launch",
+            "mainClass": "TDT4100_project/Kladd.FileHandler",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
             "name": "Kompleks",
             "request": "launch",
             "mainClass": "TDT4100_project/fundament.Kompleks",

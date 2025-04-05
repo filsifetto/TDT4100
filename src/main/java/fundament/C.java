@@ -1,7 +1,7 @@
 package fundament;
 
-import operators.MatrixOperator;
-import operators.ToolMatrix;
+import operators.RealMatrixOperator;
+import operators.RealToolMatrix;
 
 public class C extends Vektor {
 
@@ -32,9 +32,9 @@ public class C extends Vektor {
     }
 
     public void multiply(C w) {
-        MatrixOperator.multiply(
+        RealMatrixOperator.multiply(
             this, 
-            ToolMatrix.complex(w));
+            RealToolMatrix.complex(w));
     }
 
     public void divideBy(C w) {
@@ -65,9 +65,9 @@ public class C extends Vektor {
 
     public static C product(C z, C w) {
         C ny = (C)z.copy();
-        MatrixOperator.multiply(
+        RealMatrixOperator.multiply(
             ny, 
-            ToolMatrix.complex(w));
+            RealToolMatrix.complex(w));
         return ny;
     }
  

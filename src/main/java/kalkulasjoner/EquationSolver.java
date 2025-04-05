@@ -2,21 +2,21 @@ package kalkulasjoner;
 
 import java.util.ArrayList;
 
-import fundament.Matrix;
-import fundament.Row;
+import fundament.RealMatrix;
+import fundament.RealRow;
 import fundament.Vektor;
-import operators.MatrixOperator;
+import operators.RealMatrixOperator;
 import validators.RedusertTrappeformPredicate;
 
 public class EquationSolver {
 
-    private static void isValidEquation(Matrix matrix, Vektor vektor) {
+    private static void isValidEquation(RealMatrix matrix, Vektor vektor) {
         if (matrix.size() != vektor.size()) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static ArrayList<Integer> getZeroRowsIndex(Matrix matrix) { // Gaussklasse / Equationsolver?
+    private static ArrayList<Integer> getZeroRowsIndex(RealMatrix matrix) { // Gaussklasse / Equationsolver?
         ArrayList<Integer> zero = new ArrayList<>(); // Gir ut hvilke rader som er nullrader
         for (int i = 0; i < matrix.size(); i++) {
             if (matrix.get(i).isZero()) {
@@ -26,19 +26,19 @@ public class EquationSolver {
         return zero;
     }
 
-    private static int dimColSpace(Matrix matrix) {
+    private static int dimColSpace(RealMatrix matrix) {
         if (!RedusertTrappeformPredicate.test(matrix)) {
             throw new IllegalArgumentException();
         }
         return matrix.size() - getZeroRowsIndex(matrix).size();
     }
 
-    public static int dimSolution(Matrix matrix, Vektor vektor) {
-        Matrix inverse = InverseMatrixCalculator.getInverse(matrix);
-        MatrixOperator.multiply(vektor, inverse);
-        MatrixOperator.multiply(matrix, inverse);
-        MatrixOperator.clean(matrix);
-        MatrixOperator.clean(vektor);
+    public static int dimSolution(RealMatrix matrix, Vektor vektor) {
+        RealMatrix inverse = InverseMatrixCalculator.getInverse(matrix);
+        RealMatrixOperator.multiply(vektor, inverse);
+        RealMatrixOperator.multiply(matrix, inverse);
+        RealMatrixOperator.clean(matrix);
+        RealMatrixOperator.clean(vektor);
         for (int i = 0; i < vektor.size(); i++) {
             if (matrix.get(i).isZero() && !vektor.get(i).isZero()) {
                 return -1;
@@ -47,7 +47,7 @@ public class EquationSolver {
         return matrix.width() - dimColSpace(matrix);
     }
 
-    public static void printEquation(Matrix matrix, Vektor vektor) {
+    public static void printEquation(RealMatrix matrix, Vektor vektor) {
         for (int i = 0; i < matrix.size(); i++) {
             if (i == matrix.size() / 2) {
                 System.out.println(matrix.get(i) + "[x" + (i + 1) + "]  =  " + vektor.get(i));
@@ -69,17 +69,17 @@ public class EquationSolver {
         System.out.println("Likningen har ingen løsninger");
     }
 
-    private static ArrayList<Vektor> freeVectors(Matrix redusert, Vektor vektor, int frieVariabler) {
+    private static ArrayList<Vektor> freeVectors(RealMatrix redusert, Vektor vektor, int frieVariabler) {
         ArrayList<Vektor> frieVektorer = new ArrayList<>();
         for (int i = dimColSpace(redusert); i < dimColSpace(redusert) + frieVariabler; i++) {
             Vektor fri = new Vektor();
             for (int j = 0; j < redusert.size(); j++) {
                 if (j == i) {
-                    Row vektorrad = new Row();
+                    RealRow vektorrad = new RealRow();
                     vektorrad.add(1.0);
                     fri.add(vektorrad);
                 } else {
-                    Row vektorrad = new Row();
+                    RealRow vektorrad = new RealRow();
                     vektorrad.add(-redusert.getNumberAt(j, i));
                     fri.add(vektorrad);
                 }
@@ -89,7 +89,7 @@ public class EquationSolver {
         return frieVektorer;
     }
 
-    public static void printSolutionWithFreeVariables(Matrix redusert, Vektor vektor, int frieVariabler) {
+    public static void printSolutionWithFreeVariables(RealMatrix redusert, Vektor vektor, int frieVariabler) {
         String alfa = "stuvw";
         ArrayList<Vektor> vektorer = freeVectors(redusert, vektor, frieVariabler);
         for (int i = 0; i < redusert.width() - 1; i++) {
@@ -112,12 +112,12 @@ public class EquationSolver {
         System.out.println("\n");
     }
 
-    public static void solve(Matrix matrix, Vektor vektor) {
+    public static void solve(RealMatrix matrix, Vektor vektor) {
         isValidEquation(matrix, vektor);
         printEquation(matrix, vektor);
         int numberOfSolutions = dimSolution(matrix, vektor);
-        Matrix inverse = InverseMatrixCalculator.getInverse(matrix);
-        MatrixOperator.multiply(vektor, inverse);
+        RealMatrix inverse = InverseMatrixCalculator.getInverse(matrix);
+        RealMatrixOperator.multiply(vektor, inverse);
         if (numberOfSolutions == -1) {
             printNoSolutions();
         }

@@ -2,23 +2,23 @@ package operators;
 
 import java.util.stream.Collectors;
 
-import fundament.Matrix;
-import fundament.Row;
+import fundament.RealMatrix;
+import fundament.RealRow;
 
-public class MatrixOperator {
-    private static void isValidMultiplication(Matrix matrix1, Matrix matrix2) {
+public class RealMatrixOperator {
+    private static void isValidMultiplication(RealMatrix matrix1, RealMatrix matrix2) {
         if (matrix2.width() != matrix1.size()) {
             throw new IllegalArgumentException("Du kan ikke multiplisere en matrise med " + matrix2.width()
                     + " kolonner med en matrise med " + matrix1.size() + " rader!");
         }
     }
 
-    public static void multiply(Matrix matrix1, Matrix matrix2) {
+    public static void multiply(RealMatrix matrix1, RealMatrix matrix2) {
         isValidMultiplication(matrix1, matrix2);
-        Matrix tempMatrix = matrix1.copy();
+        RealMatrix tempMatrix = matrix1.copy();
         matrix1.clear();
         for (int i = 0; i < matrix2.size(); i++) {
-            Row row = new Row(); // Endre til row
+            RealRow row = new RealRow(); // Endre til row
             for (int j = 0; j < tempMatrix.width(); j++) {
                 double temp = 0;
                 for (int p = 0; p < matrix2.width(); p++) {
@@ -36,11 +36,11 @@ public class MatrixOperator {
         }
     }
 
-    public static void transpose(Matrix matrix) {
-        Matrix tempMatrix = matrix.copy();
+    public static void transpose(RealMatrix matrix) {
+        RealMatrix tempMatrix = matrix.copy();
         matrix.clear();
         for (int i = 0; i < tempMatrix.width(); i++) {
-            Row temp = new Row();
+            RealRow temp = new RealRow();
             for (int j = 0; j < tempMatrix.size(); j++) {
                 temp.add(tempMatrix.getNumberAt(j, i));
             }
@@ -49,18 +49,18 @@ public class MatrixOperator {
     }
 
 
-    public static void clean(Matrix matrix) {
+    public static void clean(RealMatrix matrix) {
         matrix.forEach(row -> {
-            Row temp = (Row) row.clone();
+            RealRow temp = (RealRow) row.clone();
             row.clear();
             temp.stream()
                     .map(d -> Math.round(d * 100) / 100.0)
                     .collect(Collectors
-                            .toCollection(Row::new))
+                            .toCollection(RealRow::new))
                     .forEach(d -> row.add(d));
         });
     }
 
-    private MatrixOperator() {
+    private RealMatrixOperator() {
     };
 }
