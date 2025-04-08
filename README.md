@@ -1,85 +1,44 @@
-# Skjelettprosjekt for TDT4100 prosjekt V2025
+# Dokumentasjon prosjekt
 
-Dette repoet er et skjelettprosjekt for TDT4100 prosjektet våren 2025.
+## Beskrivelse
 
-Vi har opprettet et eksempelprosjekt her, som er ment for at dere skal kunne komme raskt i gang med deres eget prosjekt.
+For å lære både TMA4115 og TDT4100 på en gang har jeg dette semesteret jobbet med å programmere store deler av pensumet i matte 3 - lineær algebra. I pakken "fundament" har jeg klasser som definerer noen av de grunnleggende strukturene i lineær algebra. Pakken "gausseliminasjon" inneholder klasser som lar brukeren gausseliminere en matrise - som er sentralt når man skal finne inversen til en matrise. Pakken "kalkulasjoner" viser wrapper opp utregningene. Her lar "EquationSolver" oss løse likningssett, "InverseMatrixCalculator" lar oss beregne inversen til en matrise, og "ProjectionCalculator" lar oss regne ut projeksjonen av en vektor på et gitt vektorrom. Pakkene "Operators" og "Validators" byr på støttefunksjoner til resten av programmet.
 
-## TL;DR
+Brukergrensesnittet bygger på ideen fra "InverseMatrixCalculator". Brukeren får en 3x3 matrise med en invers der alle entries er heltall, og skal på kortest mulig tid regne ut og taste inn inversmatrisen. Fasiten regnes ut av "InverseMatrixCalculator". Tiden lagres i en highscore-list som skrives til fil.
 
-Lag en ny mappe i `src/main/java/` som er deres prosjekt. Opprett en startfil for appen, slik som [ExampleProjectApp.java](src/main/java/exampleproject/ExampleProjectApp.java) og en kontroller som [ExampleProjectController.java](src/main/java/exampleproject/ExampleProjectController.java) i denne nye mappen. Lag så en mappe i `src/main/resources/` med samme navn som prosjektet deres og et view som [App.fxml](src/main/resources/exampleproject/App.fxml) i denne nye mappen.
+## Klassediagram AbstractMatrix
 
-**Eventuelt**: Endre navn på filer og mapper fra "ExampleProject" til deres prosjektnavn.
+```mermaid
 
-## Litt rask info
+classDiagram
+    class AbstractMatrix~T~ {
+        <<abstract>>
+        +AbstractMatrix(Row~T~... rows)
+        +setRow(int rowNumber, Row~T~ row)
+        +setNumber(int rowNumber, int columnNumber, T number)
+        +getNumberAt(int rowNumber, int columnNumber)
+        +width()
+        +copy()
+    }
 
-Allerede nå er det mulig å kjøre filen [ExampleProjectApp.java](src/main/java/exampleproject/ExampleProjectApp.java) i VS Code for å få opp en liten kalkulator-app.
-
-Denne filen er "startfilen" til applikasjonen. Her settes tittel på appen, hvilken FXML-fil som skal brukes, og den er ansvarlig for å starte selve applikasjonen:
-
-```java
-primaryStage.setTitle("Example App"); // Setter tittel på vinduet
-primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("App.fxml")))); // Sier at appen skal bruke "App.fxml"
-primaryStage.show(); // Viser vinduet
+    AbstractMatrix --|> ArrayList_Row
+    AbstractMatrix ..|> Matrix
 ```
 
-Kontrolleren til applikasjonen er [ExampleProjectController.java](src/main/java/exampleproject/ExampleProjectController.java). Denne filen er "bindeleddet" mellom FXML-filen(e) og klassen(e) som skal brukes i applikasjonen. I dette eksempelprosjektet har den to metoder: `initCalculator` og `handleButtonClick`. I tillegg har den noen felter som er annotert med `@FXML`. Dette viser at de tilhører [FXML-filen](src/main/resources/exampleproject/App.fxml) vår. Her er navnet på variablene viktige. F.eks er `private Label result` på linje 12 bundet til `Label`-feltet på linje 15 i [FXML-filen](src/main/resources/exampleproject/App.fxml), siden denne har en `fx:id="result"` og variabelen vår heter `result`:
+## Spørsmål
 
-```java
-@FXML
-private Label result; // Fra ExampleProjectApp.java
+### Spørsmål 1
+Jeg utnytter at matriser er en samling av rader, og at rader er en samling av tall, omtrent som en transponert vektor. Dette gjør jeg ved at radklassen arver ArrayList<Double> og matriseklassen arver ArrayList<Row>. Dette gjør at jeg sparer meg for mye arbeid, siden mange metoder jeg trenger allerede er implementert. En utfordring med dette, en nokså seriøs utfordring, er at jeg har lite kontrol over de metodene jeg arver, men som ikke er ment til å brukes.
 
-<Label fx:id="result" layoutX="257.0" layoutY="244.0" /> // Fra App.fxml
-```
+Jeg ønsker å skrive kode som lar meg gjøre de samme beregningene som jeg gjør med reelle matriser på komplekse matriser. Derfor har jeg nå laget Matrix-grensesnittet som RealMatrix implementerer. Tanken er at det skal være mulig å lage en ComplexMatrix-klasse som implementerer Matrix-grensesnittet, og som jeg kan utføre de samme beregningene på. Merk: Det er flere justeringer som må gjøres i koden før en slik funksjonalitet blir realitet. 
 
-Noe liknende skjer med metoden `handleButtonClick`, som også er annotert med `@FXML`. Dette gjøres slik at vi "får tak i" denne metoden fra [FXML-filen](src/main/resources/exampleproject/App.fxml). `Button`-feltet i [FXML-filen](src/main/resources/exampleproject/App.fxml) har en `onAction="#handleButtonClick"`, som vil si at metoden `handleButtonClick`, som er annotert med `@FXML`, blir kjørt når vi trykker på knappen:
+### Spørsmål 2
+Jeg dekker hele pensum.
 
-```xml
-<Button layoutX="271.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleButtonClick" text="Kalkuler" /> <!-- Fra App.fxml -->
-```
+### Spørsmål 3
 
-Det som gjør at [kontrolleren](src/main/java/exampleproject/ExampleProjectController.java) og [FXML-filen](src/main/resources/exampleproject/App.fxml) er koblet sammen er attributten `fx:controller='exampleproject.ExampleProjectController'` på det aller ytterste elementet i [FXML-filen](src/main/resources/exampleproject/App.fxml).
+Koden har en tydelig Model-View-Controller-struktur, der App-klassen tar seg av brukergrensesnittet, App-pakken tar seg av logikken, og controller-klassen bruker App-pakken til å styre brukergrensesnittet.
 
-```xml
-<AnchorPane fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="exampleproject.ExampleProjectController"> <!-- Fra App.fxml -->
-```
+### Spørsmål 4
 
-Så, når vi trykker på knappen i appen blir som sagt metoden `handleButtonClick` kjørt. Det som skjer inne i denne metoden er først at vi oppretter en ny [kalkulator](src/main/java/exampleproject/Calculator.java). Ved opprettelse av en kalkulator trenger vi en `operator`. Denne henter vi ut fra hva en bruker av appen har skrevet inn i `TextField`-feltet med `fx:id="operator"`. Siden vi allerede har opprettet en variabel `private TextField operator`, som er annotert med `@FXML`, er denne allerede linket til dette `TextField`-feltet, og vi kan hente ut teksten som er skrevet inn med `operator.getText()`.
-
-```java
-initCalculator(operator.getText()); // Kaller på initCalculator som oppretter en ny kalkulator. Operator.getText() henter ut teksten som er skrevet inn i `operator`-feltet.
-```
-
-Det samme gjelder nedover i metoden; vi henter ut verdier fra `firstNumber` og `secondNumber`. Det som er verdt å merke seg her er at de blir hentet ut som `String`s, men kalkulatoren vår krever `int`s. Derfor gjør vi de også om til integers. Her bør man og være litt forsiktige, da det ikke er gitt at brukere skriver inn gyldige tall. Derfor har vi wrappet dette inn i en `try/catch`, som sier ifra dersom tallet er ugyldig.
-
-I tillegg til alt dette er det laget en liten [eksempel-testfil](src/test/java/exampleproject/CalculatorTest.java). Ingenting spennende som skjer her - det er en test for konstruktøren til [kalkulator-klassen vår](src/main/java/exampleproject/Calculator.java), samt en test for metoden `calculate` som den har. Alle tester dere skriver til klassene deres legges altså inn i mappen `src/test/java/<deres_prosjekt>/`.
-
-## For å komme i gang med deres eget prosjekt
-
-1. Lag et eget repo (repository) via templaten på [GitHub](https://git.ntnu.no/tdt4100/prosjekt-base/). En mer detaljert oppskrift på dette finner dere på Blackboard under Prosjekt->FAQ.
-2. Inviter gruppemedlemmene dine til dette repoet, og gi de minst en `Developer`-rolle (helst `Maintain`, men `Admin` funker også). Dette kan gjøres under Settings->Collaborators and teams->Add people.
-3. Klon prosjektet et sted på maskinen deres.
-4. Lag en ny mappe i `src/main/java/` som er deres prosjekt.
-5. Opprett en startfil for appen deres, slik som [ExampleProjectApp.java](src/main/java/exampleproject/ExampleProjectApp.java) og en kontroller som [ExampleProjectController.java](src/main/java/exampleproject/ExampleProjectController.java) i deres nye prosjektmappe.
-6. Opprett en ny mappe i `src/main/resources/` som er deres prosjekt.
-7. Opprett en FXML-fil, slik som [App.fxml](src/main/resources/exampleproject/App.fxml) i deres nye prosjektmappe i `src/main/resources/`.
-8. **HUSK** å legge inn `fx:controller='<deres_prosjekt>.<deres_kontroller>'` på det aller ytterste elementet i den nye FXML-filen deres, ellers vil ikke appen starte.
-
-**Eventuelt**: Endre navn på filer og mapper fra "ExampleProject" til deres prosjektnavn.
-
-## Reminder av nøkkelpunkter
-
-| Nøkkelpunkt                              | Beskrivelse                             |
-| ---------------------------------------- | --------------------------------------- |
-| Innleveringsfrist                        | 11. april                               |
-| Demonstrasjonsfrist hos læringsassistent | 25. april                               |
-| Gruppestørrelse                          | 1 eller 2 personer                      |
-
-### Anbefalte perioder å jobbe med prosjektet
-
-| Uke   | Fra  | Til  | Beskrivelse                                 |
-| ----- | ---- | ---- | ------------------------------------------- |
-| 13    | 24/3 | 31/3 | Grunnklasser og brukergrensesnitt           |
-| 14    | 31/3 |  6/4 | Lagring og filhåndtering                    |
-| 15    |  7/4 | 11/4 | Fullføre appen med tilhørende dokumentasjon |
-
-**_LYKKE TIL_**
+For å teste koden har jeg gjennom utviklingsfasen kontinuerlig brukt en main-metode for å sørge for at hvert enkelt steg fungerer som det skal. I etterkant har jeg erfart at når jeg senere går gjennom og gjør store eller små endringer i koden, ville det vært en fordel om jeg fra starten av hadde skrevet ordentlige og grundige unittester. Jeg har nå skrevet tester på et knippe av klassene som jeg ser som sentrale for at den delen av prosjektet som dreier seg om brukergrensesnittet.
