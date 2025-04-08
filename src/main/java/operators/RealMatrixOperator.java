@@ -48,7 +48,11 @@ public class RealMatrixOperator {
         }
     }
 
-
+    /**
+     * Metoden runder av entries i matrisen.
+     * 
+     * @param matrix
+     */
     public static void clean(RealMatrix matrix) {
         matrix.forEach(row -> {
             RealRow temp = (RealRow) row.clone();
