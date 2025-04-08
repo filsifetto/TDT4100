@@ -1,4 +1,6 @@
 user1:30.0
 flyndre:32.6
 axelfi:40.8
+ax:41.4
+axel:45.5
 Filsifetto:57.4

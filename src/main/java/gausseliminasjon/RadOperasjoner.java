@@ -3,6 +3,7 @@ package gausseliminasjon;
 import java.util.ArrayList;
 
 import fundament.RealMatrix;
+import operators.PivotComperator;
 import operators.RealMatrixOperator;
 import operators.RealToolMatrix;
 
@@ -41,7 +42,12 @@ public class RadOperasjoner {
 
     public static void sortByPivot(ArrayList<RealMatrix> radOperasjoner, RealMatrix matrix) {
         for (int i = 1; i < matrix.size(); i++) {
-            if (matrix.get(i).getPivotIndex().getAsInt() < matrix.get(i - 1).getPivotIndex().getAsInt()) {
+            // if (matrix.get(i).getPivotIndex().getAsInt() < matrix.get(i - 1).getPivotIndex().getAsInt()) {
+            //     RealMatrix radBytteMatrix = RealToolMatrix.radBytte(matrix, i, i - 1);
+            //     RealMatrixOperator.multiply(matrix, radBytteMatrix);
+            //     radOperasjoner.add(radBytteMatrix);
+            // }
+            if (new PivotComperator<Double>().compare(matrix.get(i), matrix.get(i - 1)) < 0) {
                 RealMatrix radBytteMatrix = RealToolMatrix.radBytte(matrix, i, i - 1);
                 RealMatrixOperator.multiply(matrix, radBytteMatrix);
                 radOperasjoner.add(radBytteMatrix);

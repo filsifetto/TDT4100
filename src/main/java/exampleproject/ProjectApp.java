@@ -19,4 +19,4 @@ public class ProjectApp extends Application {
         primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("App.fxml"))));
         primaryStage.show();
     }
-}
+}   

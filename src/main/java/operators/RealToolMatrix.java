@@ -1,5 +1,6 @@
 package operators;
 
+import java.util.OptionalInt;
 import java.util.stream.IntStream;
 
 import fundament.Kompleks;
@@ -76,12 +77,12 @@ public class RealToolMatrix {
     public static RealMatrix eliminateUp(RealMatrix matrix) { // Gauss-Klasse istedet
         RealMatrix iD = identity(matrix);
         for (int i = matrix.size() - 1; i > 0; i--) {
-            int pivotIndex = matrix.get(i).getPivotIndex().getAsInt();
-            if (pivotIndex == 100000) {
+            OptionalInt pivotIndex = matrix.get(i).getPivotIndex();
+            if (pivotIndex.isEmpty()) {
                 continue;
             }
             for (int j = 1; j <= i; j++) {
-                double scalar = matrix.getNumberAt(i - j, pivotIndex);
+                double scalar = matrix.getNumberAt(i - j, pivotIndex.getAsInt());
                 RealMatrix temp = reduction(matrix, i, i - j, scalar);
                 RealMatrixOperator.multiply(iD, temp);
             }

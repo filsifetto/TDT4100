@@ -105,6 +105,11 @@ public class ProjectController {
             velgBrukernavn.setText("Velg brukernavn før du starter");
             throw new IllegalStateException();
         }
+        else if (userName.getText().strip().length() < 3) {
+            velgBrukernavn.setText("Ikke gyldig brukernavn");
+            throw new IllegalStateException();
+        }
+        else {velgBrukernavn.setText("");}
         task = TaskGenerator.generate();
         stopWatch.start();
         // startTime = System.currentTimeMillis();
