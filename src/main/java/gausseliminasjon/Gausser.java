@@ -8,6 +8,12 @@ import validators.TrappeformPredicate;
 public class Gausser {
     private RealMatrix matrix;
     private ArrayList<RealMatrix> radOperasjonListe = new ArrayList<>();
+
+
+    /**
+     * 
+     * @return a list of rows to use in gausselimination
+     */
     
     private ArrayList<Integer> identifyElimination() {
         ArrayList<Integer> eliminationRows = new ArrayList<>();

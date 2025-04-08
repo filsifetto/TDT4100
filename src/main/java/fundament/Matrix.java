@@ -1,8 +1,8 @@
 package fundament;
 
-import java.io.Serializable;
+import java.util.Collection;
 
-public interface Matrix<T> extends Serializable{
+public interface Matrix<T> extends Collection<Row<T>> {
     void setRow(int rowNumber, Row<T> row);
     void setNumber(int rowNumber, int columnNumber, T number);
     T getNumberAt(int rowNumber, int columnNumber);
@@ -19,4 +19,5 @@ public interface Matrix<T> extends Serializable{
     void transpose();
     void clean();
     Matrix<T> identity();
+    Row<T> get(int i);
 }

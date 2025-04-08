@@ -62,15 +62,4 @@ public class Kompleks extends Vektor {
     Kompleks(double a) {
         this(a, 0);
     }
-
-    public static void main(String[] args) {
-        Kompleks kompleks = new Kompleks(1, 1.0);
-        Kompleks k2 = new Kompleks(0,1);
-        System.out.println(kompleks);
-        System.out.println(k2);
-        kompleks.printPolar();
-        k2.printPolar();
-        kompleks.multiply(k2);
-        System.out.println(kompleks);
-    }
 }
