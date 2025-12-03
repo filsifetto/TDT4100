@@ -1,44 +1,203 @@
-# Dokumentasjon prosjekt
+# Linear Algebra Project
 
-## Beskrivelse
+A comprehensive Java implementation of linear algebra concepts, created as a learning project combining the study of linear algebra (TMA4115) with object-oriented programming in Java (TDT4100).
 
-For å lære både TMA4115 og TDT4100 på en gang har jeg dette semesteret jobbet med å programmere store deler av pensumet i matte 3 - lineær algebra. I pakken "fundament" har jeg klasser som definerer noen av de grunnleggende strukturene i lineær algebra. Pakken "gausseliminasjon" inneholder klasser som lar brukeren gausseliminere en matrise - som er sentralt når man skal finne inversen til en matrise. Pakken "kalkulasjoner" viser wrapper opp utregningene. Her lar "EquationSolver" oss løse likningssett, "InverseMatrixCalculator" lar oss beregne inversen til en matrise, og "ProjectionCalculator" lar oss regne ut projeksjonen av en vektor på et gitt vektorrom. Pakkene "Operators" og "Validators" byr på støttefunksjoner til resten av programmet.
+## Purpose
 
-Brukergrensesnittet bygger på ideen fra "InverseMatrixCalculator". Brukeren får en 3x3 matrise med en invers der alle entries er heltall, og skal på kortest mulig tid regne ut og taste inn inversmatrisen. Fasiten regnes ut av "InverseMatrixCalculator". Tiden lagres i en highscore-list som skrives til fil.
+This project was created to combine learning linear algebra from the course TMA4115 with learning object-oriented programming in Java from the course TDT4100. The approach taken was to hard-code every little step of the mathematics course, implementing the fundamental concepts and operations of linear algebra as Java classes and methods.
 
-## Klassediagram AbstractMatrix
+By implementing each mathematical concept and operation step-by-step, this project serves as both a practical application of linear algebra theory and a comprehensive exercise in Java OOP principles.
 
-```mermaid
+## Features
 
-classDiagram
-    class AbstractMatrix~T~ {
-        <<abstract>>
-        +AbstractMatrix(Row~T~... rows)
-        +setRow(int rowNumber, Row~T~ row)
-        +setNumber(int rowNumber, int columnNumber, T number)
-        +getNumberAt(int rowNumber, int columnNumber)
-        +width()
-        +copy()
-    }
+- **Matrix Operations**: Addition, multiplication, inversion, and transformation
+- **Vector Operations**: Vector arithmetic, dot product, scalar multiplication, and vector space calculations
+- **Gaussian Elimination**: Complete implementation with row operations for solving linear systems
+- **Equation Solving**: Solve systems of linear equations
+- **Vector Projections**: Project vectors onto vector spaces
+- **Interactive Game**: Matrix inversion game with timing and leaderboard
+- **Comprehensive Testing**: Unit tests for core functionality
 
-    AbstractMatrix --|> ArrayList_Row
-    AbstractMatrix ..|> Matrix
+## Technologies
+
+- **Java 21**: Core programming language
+- **JavaFX 23**: User interface framework
+- **Maven**: Build tool and dependency management
+- **JUnit 5**: Testing framework
+
+## Repository Structure
+
+```
+Linear-algebra-Project/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   ├── App/                    # User interface and game logic
+│   │   │   │   ├── FileHandler.java
+│   │   │   │   ├── Leaderboard.java
+│   │   │   │   ├── MatrixBank.java
+│   │   │   │   ├── StopWatch.java
+│   │   │   │   ├── Task.java
+│   │   │   │   └── TaskGenerator.java
+│   │   │   ├── fundament/              # Core linear algebra structures
+│   │   │   │   ├── AbstractMatrix.java
+│   │   │   │   ├── AbstractRow.java
+│   │   │   │   ├── Matrix.java
+│   │   │   │   ├── RealMatrix.java
+│   │   │   │   ├── RealRow.java
+│   │   │   │   ├── Row.java
+│   │   │   │   ├── Vektor.java
+│   │   │   │   ├── VektorRom.java
+│   │   │   │   ├── Kompleks.java
+│   │   │   │   └── C.java
+│   │   │   ├── gausseliminasjon/       # Gaussian elimination algorithms
+│   │   │   │   ├── Gausser.java
+│   │   │   │   └── RadOperasjoner.java
+│   │   │   ├── kalkulasjoner/          # High-level calculations
+│   │   │   │   ├── EquationSolver.java
+│   │   │   │   ├── InverseMatrixCalculator.java
+│   │   │   │   └── ProjectionCalculator.java
+│   │   │   ├── operators/              # Supporting operators
+│   │   │   │   ├── PivotComperator.java
+│   │   │   │   ├── RealMatrixOperator.java
+│   │   │   │   ├── RealToolMatrix.java
+│   │   │   │   └── VektorOperator.java
+│   │   │   ├── validators/             # Matrix form validators
+│   │   │   │   ├── RedusertTrappeformPredicate.java
+│   │   │   │   └── TrappeformPredicate.java
+│   │   │   └── exampleproject/         # Example JavaFX application
+│   │   └── resources/
+│   └── test/
+│       └── java/                        # Unit tests
+│           ├── fundament/
+│           ├── gausseliminasjon/
+│           ├── kalkulasjoner/
+│           ├── operators/
+│           └── validators/
+├── pom.xml                              # Maven configuration
+├── LICENSE                              # MIT License
+└── README.md                            # This file
 ```
 
-## Spørsmål
+## Installation
 
-### Spørsmål 1
-Jeg utnytter at matriser er en samling av rader, og at rader er en samling av tall, omtrent som en transponert vektor. Dette gjør jeg ved at radklassen arver ArrayList<Double> og matriseklassen arver ArrayList<Row>. Dette gjør at jeg sparer meg for mye arbeid, siden mange metoder jeg trenger allerede er implementert. En utfordring med dette, en nokså seriøs utfordring, er at jeg har lite kontrol over de metodene jeg arver, men som ikke er ment til å brukes.
+### Prerequisites
 
-Jeg ønsker å skrive kode som lar meg gjøre de samme beregningene som jeg gjør med reelle matriser på komplekse matriser. Derfor har jeg nå laget Matrix-grensesnittet som RealMatrix implementerer. Tanken er at det skal være mulig å lage en ComplexMatrix-klasse som implementerer Matrix-grensesnittet, og som jeg kan utføre de samme beregningene på. Merk: Det er flere justeringer som må gjøres i koden før en slik funksjonalitet blir realitet. 
+- Java 21 or higher
+- Maven 3.6 or higher
 
-### Spørsmål 2
-Jeg dekker hele pensum.
+### Setup
 
-### Spørsmål 3
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd Linear-algebra-Project
+```
 
-Koden har en tydelig Model-View-Controller-struktur, der App-klassen tar seg av brukergrensesnittet, App-pakken tar seg av logikken, og controller-klassen bruker App-pakken til å styre brukergrensesnittet.
+2. Build the project:
+```bash
+mvn clean compile
+```
 
-### Spørsmål 4
+3. Run tests:
+```bash
+mvn test
+```
 
-For å teste koden har jeg gjennom utviklingsfasen kontinuerlig brukt en main-metode for å sørge for at hvert enkelt steg fungerer som det skal. I etterkant har jeg erfart at når jeg senere går gjennom og gjør store eller små endringer i koden, ville det vært en fordel om jeg fra starten av hadde skrevet ordentlige og grundige unittester. Jeg har nå skrevet tester på et knippe av klassene som jeg ser som sentrale for at den delen av prosjektet som dreier seg om brukergrensesnittet.
+4. Run the application:
+```bash
+mvn javafx:run
+```
+
+## Usage
+
+### Running the Application
+
+The main application entry point is configured in `pom.xml`. Run using:
+
+```bash
+mvn javafx:run
+```
+
+### Using the Library
+
+You can use the linear algebra classes in your own code:
+
+```java
+import fundament.Vektor;
+import fundament.RealMatrix;
+import kalkulasjoner.InverseMatrixCalculator;
+
+// Create a matrix
+RealMatrix matrix = new RealMatrix(...);
+
+// Calculate inverse
+RealMatrix inverse = InverseMatrixCalculator.getInverse(matrix);
+
+// Create a vector
+Vektor vector = new Vektor(...);
+```
+
+### Interactive Game
+
+The application includes an interactive matrix inversion game:
+- You are presented with a 3×3 matrix with an integer inverse
+- Calculate and input the inverse matrix as quickly as possible
+- Your time is recorded and saved to the leaderboard
+
+## Project Structure Overview
+
+### Core Packages
+
+- **`fundament`**: Core mathematical structures (vectors, matrices, vector spaces)
+  - See [fundament/README.md](src/main/java/fundament/README.md) for details
+
+- **`gausseliminasjon`**: Gaussian elimination implementation
+  - See [gausseliminasjon/README.md](src/main/java/gausseliminasjon/README.md) for details
+
+- **`kalkulasjoner`**: High-level calculation wrappers
+  - See [kalkulasjoner/README.md](src/main/java/kalkulasjoner/README.md) for details
+
+- **`operators`**: Supporting operator classes
+  - See [operators/README.md](src/main/java/operators/README.md) for details
+
+- **`validators`**: Matrix form validation predicates
+  - See [validators/README.md](src/main/java/validators/README.md) for details
+
+- **`App`**: User interface and game application
+  - See [App/README.md](src/main/java/App/README.md) for details
+
+## Testing
+
+The project includes comprehensive unit tests using JUnit 5. Tests are located in `src/test/java/` and cover:
+
+- Core fundamental classes (vectors, matrices)
+- Gaussian elimination operations
+- Calculation algorithms
+- Operator utilities
+- Validator predicates
+
+Run all tests with:
+```bash
+mvn test
+```
+
+## Design Notes
+
+- The implementation uses inheritance from `ArrayList` for rows and matrices to leverage built-in collection functionality
+- The `Matrix` interface is designed to support both real and complex matrices (though complex matrix implementation is not yet complete)
+- The project follows a Model-View-Controller (MVC) architecture pattern
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Author
+
+Axel Filseth
+
+## Acknowledgments
+
+Created as part of coursework for:
+- **TMA4115**: Linear Algebra
+- **TDT4100**: Object-Oriented Programming
